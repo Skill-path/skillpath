@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Level 4 - SkillPath</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    #text-to-type { font-size: 20px; font-weight: bold; margin: 20px 0; }
+    #typing-input { width: 100%; height: 40px; font-size: 18px; padding: 10px; }
+    .result { margin-top: 20px; font-size: 18px; }
+    #timer { font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Typing Level 4</h1>
+
+  <p id="text-to-type">Type this sentence: "What lies behind us and what lies before us are tiny matters compared to what lies within us."</p>
+
+  <textarea id="typing-input" placeholder="Start typing here..." oninput="checkTyping()"></textarea>
+
+  <div id="result" class="result"></div>
+  <div id="timer">Time: 0s</div>
+
+  <button onclick="submitTyping()">Submit</button>
+
+  <script>
+    // The sentence user needs to type (Level 4)
+    const sentence = "What lies behind us and what lies before us are tiny matters compared to what lies within us.";
+    let totalCharacters = sentence.length;
+    let timerInterval;
+    let startTime;
+    let typingStarted = false;
+
+    function startTimer() {
+      startTime = Date.now();
+      timerInterval = setInterval(function() {
+        let elapsedTime = Math.floor((Date.now() - startTime) / 1000);  // Time in seconds
+        document.getElementById("timer").innerHTML = `Time: ${elapsedTime}s`;
+      }, 1000);
+    }
+
+    function checkTyping() {
+      if (!typingStarted) {
+        startTimer();
+        typingStarted = true;
+      }
+
+      const typedText = document.getElementById("typing-input").value;
+      const correctChars = typedText.split("").reduce((acc, char, index) => {
+        return char === sentence[index] ? acc + 1 : acc;
+      }, 0);
+
+      // Update result dynamically
+      const accuracy = (correctChars / totalCharacters) * 100;
+      if (accuracy >= 85) {
+        document.getElementById("result").innerHTML = `Great! You’ve typed ${accuracy.toFixed(2)}% correctly. <br>Click submit to continue.`;
+      } else {
+        document.getElementById("result").innerHTML = `You’ve typed ${accuracy.toFixed(2)}% correctly. Keep trying!`;
+      }
+    }
+
+    function submitTyping() {
+      clearInterval(timerInterval); // Stop the timer
+      const typedText = document.getElementById("typing-input").value;
+      const correctChars = typedText.split("").reduce((acc, char, index) => {
+        return char === sentence[index] ? acc + 1 : acc;
+      }, 0);
+      
+      const accuracy = (correctChars / totalCharacters) * 100;
+
+      // Calculate elapsed time
+      const elapsedTime = Math.floor((Date.now() - startTime) / 1000);  // Time in seconds
+
+      if (accuracy >= 85) {
+        alert(`Congratulations! You've passed this level in ${elapsedTime} seconds.`);
+        localStorage.setItem("typing-Level4", "passed");
+        // Save this progress and allow access to the next level.
+        window.location.href = "typing-level5.html"; // Redirect to Level 5 (Example URL)
+      } else {
+        alert(`Sorry, you didn’t pass. You typed with ${accuracy.toFixed(2)}% accuracy in ${elapsedTime} seconds. Please try again.`);
+      }
+    }
+  </script>
+
+</body>
+</html>

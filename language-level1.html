@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Level 1 - SkillPath</title>
+</head>
+<body>
+
+  <h1>Language Level 1 - Spanish to English</h1>
+
+  <!-- Quiz Questions -->
+  <div id="quiz">
+    <h3>¿Cómo se dice 'Hola' en inglés?</h3> <!-- Question in Spanish -->
+    <ul>
+      <li><input type="radio" name="q1" value="A"> Hello</li> <!-- Answer in English -->
+      <li><input type="radio" name="q1" value="B"> Goodbye</li>
+      <li><input type="radio" name="q1" value="C"> Thank you</li>
+    </ul>
+
+    <h3>¿Cómo se dice 'Gracias' en inglés?</h3>
+    <ul>
+      <li><input type="radio" name="q2" value="A"> Thank you</li>
+      <li><input type="radio" name="q2" value="B"> Please</li>
+      <li><input type="radio" name="q2" value="C"> Goodbye</li>
+    </ul>
+
+    <h3>¿Cómo se dice 'Buenos días' en inglés?</h3>
+    <ul>
+      <li><input type="radio" name="q3" value="A"> Good morning</li>
+      <li><input type="radio" name="q3" value="B"> Good night</li>
+      <li><input type="radio" name="q3" value="C"> Good afternoon</li>
+    </ul>
+
+    <h3>¿Cómo se dice 'Adiós' en inglés?</h3>
+    <ul>
+      <li><input type="radio" name="q4" value="A"> Goodbye</li>
+      <li><input type="radio" name="q4" value="B"> Hello</li>
+      <li><input type="radio" name="q4" value="C"> Thank you</li>
+    </ul>
+
+    <button onclick="submitQuiz()">Submit</button>
+  </div>
+
+  <!-- Result Section -->
+  <div id="result">
+    <strong>You scored: <span id="score"></span>/4</strong>
+    <p id="passFailMessage"></p>
+    <p><em>Remember: You need 3 out of 4 correct answers to pass the level.</em></p>
+  </div>
+
+  <script>
+    let score = 0;
+
+    function submitQuiz() {
+      let answers = document.querySelectorAll('input[type="radio"]:checked');
+      answers.forEach(function(answer) {
+        if (answer.value === "A") { score++; }
+      });
+
+      // Display score
+      document.getElementById("score").innerText = score;
+
+      // Pass/Fail message based on score
+      if (score >= 3) {
+        document.getElementById("passFailMessage").innerText = "Congratulations! You passed this level!";
+      } else {
+        document.getElementById("passFailMessage").innerText = "Sorry, you didn't pass. Try again!";
+      }
+    }
+  </script>
+
+</body>
+</html>
