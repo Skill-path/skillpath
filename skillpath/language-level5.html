@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Level 5 - SkillPath</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    .question { font-size: 20px; font-weight: bold; margin: 20px 0; }
+    .answer { font-size: 18px; margin: 8px 0; }
+    button { padding: 10px 20px; font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Language Level 5 - English</h1>
+
+  <div class="question">1. ¿Cómo se dice 'computadora' en inglés?</div>
+  <div class="answer">
+    <label><input type="radio" name="q1" value="Correct"> Computer</label><br>
+    <label><input type="radio" name="q1" value="Incorrect"> Table</label><br>
+    <label><input type="radio" name="q1" value="Incorrect"> Chair</label>
+  </div>
+
+  <div class="question">2. ¿Cómo se dice 'biblioteca' en inglés?</div>
+  <div class="answer">
+    <label><input type="radio" name="q2" value="Correct"> Library</label><br>
+    <label><input type="radio" name="q2" value="Incorrect"> School</label><br>
+    <label><input type="radio" name="q2" value="Incorrect"> Kitchen</label>
+  </div>
+
+  <div class="question">3. ¿Cómo se dice 'avión' en inglés?</div>
+  <div class="answer">
+    <label><input type="radio" name="q3" value="Correct"> Airplane</label><br>
+    <label><input type="radio" name="q3" value="Incorrect"> Train</label><br>
+    <label><input type="radio" name="q3" value="Incorrect"> Boat</label>
+  </div>
+
+  <div class="question">4. ¿Cómo se dice 'ciudad' en inglés?</div>
+  <div class="answer">
+    <label><input type="radio" name="q4" value="Correct"> City</label><br>
+    <label><input type="radio" name="q4" value="Incorrect"> Town</label><br>
+    <label><input type="radio" name="q4" value="Incorrect"> Village</label>
+  </div>
+
+  <button onclick="submitAnswers()">Submit</button>
+
+  <script>
+    function submitAnswers() {
+      const correctAnswers = [
+        document.querySelector('input[name="q1"]:checked')?.value === 'Correct',
+        document.querySelector('input[name="q2"]:checked')?.value === 'Correct',
+        document.querySelector('input[name="q3"]:checked')?.value === 'Correct',
+        document.querySelector('input[name="q4"]:checked')?.value === 'Correct',
+      ];
+
+      const numCorrect = correctAnswers.filter(Boolean).length;
+
+      if (numCorrect >= 3) {
+        alert("Congratulations! You've passed this level.");
+        window.location.href = "language-level6-english.html"; // Redirect to next level
+      } else {
+        alert("Sorry, you didn’t pass. Try again!");
+      }
+    }
+  </script>
+
+</body>
+</html>

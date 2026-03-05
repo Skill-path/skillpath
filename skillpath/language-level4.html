@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Level 4 - SkillPath</title>
+</head>
+<body>
+
+<h1>Language Level 4 - Spanish to English</h1>
+
+<div id="quiz">
+  <h3>¿Cómo se dice '¿Habla inglés?' en inglés?</h3>
+  <ul>
+    <li><input type="radio" name="q1" value="A"> Do you speak English?</li>
+    <li><input type="radio" name="q1" value="B"> Where do you live?</li>
+    <li><input type="radio" name="q1" value="C"> How old are you?</li>
+  </ul>
+
+  <h3>¿Cómo se dice 'No entiendo' en inglés?</h3>
+  <ul>
+    <li><input type="radio" name="q2" value="A"> I don’t understand</li>
+    <li><input type="radio" name="q2" value="B"> I am tired</li>
+    <li><input type="radio" name="q2" value="C"> I am hungry</li>
+  </ul>
+
+  <h3>¿Cómo se dice 'Necesito ayuda' en inglés?</h3>
+  <ul>
+    <li><input type="radio" name="q3" value="A"> I need help</li>
+    <li><input type="radio" name="q3" value="B"> I am lost</li>
+    <li><input type="radio" name="q3" value="C"> Excuse me</li>
+  </ul>
+
+  <h3>¿Cómo se dice '¿Dónde está la estación de tren?' en inglés?</h3>
+  <ul>
+    <li><input type="radio" name="q4" value="A"> Where is the train station?</li>
+    <li><input type="radio" name="q4" value="B"> Where is the hotel?</li>
+    <li><input type="radio" name="q4" value="C"> How much does this cost?</li>
+  </ul>
+
+  <button onclick="submitQuiz()">Submit</button>
+</div>
+
+<div id="result">
+  <strong>You scored: <span id="score"></span>/4</strong>
+  <p id="passFailMessage"></p>
+  <p><em>Remember: You need 3 out of 4 correct answers to pass the level.</em></p>
+</div>
+
+<script>
+let score = 0;
+
+function submitQuiz() {
+  score = 0;
+  let answers = document.querySelectorAll('input[type="radio"]:checked');
+  answers.forEach(function(answer) {
+    if(answer.value === "A") { score++; }
+  });
+  document.getElementById("score").innerText = score;
+  document.getElementById("passFailMessage").innerText = (score >= 3) ? 
+    "Congratulations! You passed this level!" : 
+    "Sorry, you didn't pass. Try again!";
+}
+</script>
+
+</body>
+</html>

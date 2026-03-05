@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Level 6 - SkillPath</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; }
+    h1 { text-align: center; }
+    #text-to-type { font-size: 20px; font-weight: bold; margin: 20px 0; }
+    #typing-input { width: 100%; height: 200px; font-size: 18px; padding: 10px; }
+    .result { margin-top: 20px; font-size: 18px; }
+    #timer { font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Typing Level 6</h1>
+
+  <p id="text-to-type">Type this paragraph: 
+    "Technology is changing the world at a rapid pace, and this transformation is reshaping industries, education, healthcare, and social interactions. The power of the internet allows us to work, learn, and communicate without being limited by geographical boundaries. However, this freedom brings with it new challenges. The widespread use of the internet has raised concerns about privacy, data security, and the potential misuse of personal information. It is crucial for individuals and organizations to be aware of these issues and take steps to protect their data."
+  </p>
+
+  <p id="text-to-type">And this second paragraph: 
+    "Artificial intelligence is one of the most exciting advancements in modern technology. By simulating human intelligence, AI is being used to solve complex problems in fields like healthcare, finance, and transportation. From self-driving cars to personalized medicine, AI has the potential to greatly improve our lives. However, there are ethical concerns about its use, especially regarding job displacement and privacy. It is important for society to regulate AI's development and ensure it is used responsibly for the benefit of all."
+  </p>
+
+  <textarea id="typing-input" placeholder="Start typing here..." oninput="checkTyping()"></textarea>
+
+  <div id="result" class="result"></div>
+  <div id="timer">Time: 0s</div>
+
+  <button onclick="submitTyping()">Submit</button>
+
+  <script>
+    const sentence = "Technology is changing the world at a rapid pace, and this transformation is reshaping industries, education, healthcare, and social interactions. The power of the internet allows us to work, learn, and communicate without being limited by geographical boundaries. However, this freedom brings with it new challenges. The widespread use of the internet has raised concerns about privacy, data security, and the potential misuse of personal information. It is crucial for individuals and organizations to be aware of these issues and take steps to protect their data. Artificial intelligence is one of the most exciting advancements in modern technology. By simulating human intelligence, AI is being used to solve complex problems in fields like healthcare, finance, and transportation. From self-driving cars to personalized medicine, AI has the potential to greatly improve our lives. However, there are ethical concerns about its use, especially regarding job displacement and privacy. It is important for society to regulate AI's development and ensure it is used responsibly for the benefit of all.";
+    let totalCharacters = sentence.length;
+    let timerInterval;
+    let startTime;
+    let typingStarted = false;
+
+    function startTimer() {
+      startTime = Date.now();
+      timerInterval = setInterval(function() {
+        let elapsedTime = Math.floor((Date.now() - startTime) / 1000); // Time in seconds
+        document.getElementById("timer").innerHTML = `Time: ${elapsedTime}s`;
+      }, 1000);
+    }
+
+    function checkTyping() {
+      if (!typingStarted) {
+        startTimer();
+        typingStarted = true;
+      }
+
+      const typedText = document.getElementById("typing-input").value;
+      const correctChars = typedText.split("").reduce((acc, char, index) => {
+        return char === sentence[index] ? acc + 1 : acc;
+      }, 0);
+
+      const accuracy = (correctChars / totalCharacters) * 100;
+      if (accuracy >= 85) {
+        document.getElementById("result").innerHTML = `Great! You’ve typed ${accuracy.toFixed(2)}% correctly. <br>Click submit to continue.`;
+      } else {
+        document.get

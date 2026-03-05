@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillPath - Practice Typing and Language Skills</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CV8Q1X8Q0W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CV8Q1X8Q0W');
+  </script>
+</head>
+<body>
+
+  <!-- Hero / Banner -->
+  <div class="hero">
+    <h1>Test Your Typing Speed and Accuracy!</h1>
+    <p>Master Languages. Improve Typing. Level Up Your Skills.</p>
+  </div>
+
+  <!-- Motivational Quote -->
+  <div class="quote">
+    <h3>"The journey of a thousand miles begins with one step." – Lao Tzu</h3>
+  </div>
+
+  <!-- Language Levels -->
+  <h2>Language Levels</h2>
+  
+  <h3>English:</h3>
+  <a href="language-level1.html" class="level-button">Level 1</a>
+  <a href="language-level2.html" class="level-button">Level 2</a>
+  <a href="language-level3.html" class="level-button">Level 3</a>
+  <a href="language-level4.html" class="level-button">Level 4</a>
+  <a href="language-level5.html" class="level-button">Level 5</a>
+  <a href="language-level6.html" class="level-button">Level 6</a>
+
+  <h3>Spanish:</h3>
+  <a href="language-level1-spanish.html" class="level-button">Level 1</a>
+  <a href="language-level2-spanish.html" class="level-button">Level 2</a>
+  <a href="language-level3-spanish.html" class="level-button">Level 3</a>
+  <a href="language-level4-spanish.html" class="level-button">Level 4</a>
+  <a href="language-level5-spanish.html" class="level-button">Level 5</a>
+  <a href="language-level6-spanish.html" class="level-button">Level 6</a>
+
+  <!-- Typing Levels -->
+  <h2>Typing Levels</h2>
+  <a href="typing-level1.html" class="level-button">Level 1</a>
+  <a href="typing-level2.html" class="level-button locked" id="t2">Level 2 🔒</a>
+  <a href="typing-level3.html" class="level-button locked" id="t3">Level 3 🔒</a>
+  <a href="typing-level4.html" class="level-button locked" id="t4">Level 4 🔒</a>
+  <a href="typing-level5.html" class="level-button locked" id="t5">Level 5 🔒</a>
+  <a href="typing-level6.html" class="level-button locked" id="t6">Level 6 🔒</a>
+
+  
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  for (let i = 1; i <= 6; i++) {
+
+    const passed = localStorage.getItem("typing-Level" + i) === "passed";
+
+    // Get button reference
+    let btn;
+    if (i === 1) {
+      btn = document.querySelector('a[href="typing-level1.html"]');
+    } else {
+      btn = document.getElementById("t" + i);
+    }
+
+    if (!btn) continue;
+
+    // If level is passed
+    if (passed) {
+      btn.classList.add("passed");
+      btn.classList.remove("locked");
+      btn.innerHTML = "Level " + i + " ✅";
+    }
+
+    // Unlock next level
+    if (i > 1) {
+      const previousPassed = localStorage.getItem("typing-Level" + (i - 1)) === "passed";
+      if (previousPassed) {
+        btn.classList.remove("locked");
+        if (!passed) {
+          btn.innerHTML = "Level " + i;
+        }
+      }
+    }
+
+  }
+
+});
+</script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  for (let i = 1; i <= 6; i++) {
+
+    const passed = localStorage.getItem("typingLevel" + i) === "passed";
+
+    // Get button reference
+    let btn;
+    if (i === 1) {
+      btn = document.querySelector('a[href="typing-level1.html"]');
+    } else {
+      btn = document.getElementById("t" + i);
+    }
+
+    if (!btn) continue;
+
+    // If level is passed
+    if (passed) {
+      btn.classList.add("passed");
+      btn.classList.remove("locked");
+      btn.innerHTML = "Level " + i + " ✅";
+    }
+
+    // Unlock next level
+    if (i > 1) {
+      const previousPassed = localStorage.getItem("typingLevel" + (i - 1)) === "passed";
+      if (previousPassed) {
+        btn.classList.remove("locked");
+        if (!passed) {
+          btn.innerHTML = "Level " + i;
+        }
+      }
+    }
+
+  }
+
+});
+</script>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 SkillPath. All rights reserved.</p>
+    <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
+</body>
+</html>
